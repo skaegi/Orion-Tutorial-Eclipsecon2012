@@ -1,2 +1,1 @@
-Orion-Tutorial-Eclipsecon2012
-=============================
+Material from the Orion Tutorial for Eclipsecon2012
