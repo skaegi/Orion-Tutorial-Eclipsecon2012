@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Presentation</title>
+		<meta charset="utf-8" />
+		<script src="../slides.js"></script>
+		<style>
+			/* Your individual styles here, or just use inline styles if that’s
+			what you want. */ 
+		</style>
+	</head>
+	<body style="display: none;">
+		<section class="slides layout-regular template-orion">
+			<article class="biglogo">
+			</article>
+			<article>
+				<h1>Extending Orion</h1>
+				<p><b>John Arthorne, Szymon Brandys, and Simon Kaegi</b></p>
+				<p><b>26 March 2012</b></p>
+			</article>
+			<article>
+				<h3>
+					Orion project is about software development in a browser
+				</h3>
+				<ul>
+					<li>NOT like a desktop IDE (the web is the platform)</li>
+					<li>promotes a page-oriented web experience</li>
+					<li>addresses “core coding” activities and extensions</li>
+					<li>support workflows across a set of linked web pages</li>
+				</ul>
+			</article>
+			<article>
+				<h3>
+					Design Principles
+				</h3>
+				<ul>
+					<li>use native browser capabilities</li>
+					<li>task oriented / resource-focused</li>
+					<li>performant and lightweight</li>
+					<li>low barriers to entry for consumers</li>
+				</ul>
+			</article>
+			<article>
+				<h3>
+					Modular Client-side Architecture
+				</h3>
+				<ul>
+					<li>Components – Asynchronous Module Definition</li>
+					<li>Services/Interfaces – JavaScript Micro Services</li>
+					<li>Pluggable Content and Function – Orion Plugins</li>
+					<li>Declarative UI – Semantic Parts / Skinnable</li>
+				</ul>
+			</article>
+			<article>
+				<h3>
+					Agenda
+				</h3>
+				<ul>
+					<li>Introduction</li>
+					<li>Setup and Simple Helloworld Plugin Walkthrough</li>
+					<li>Technical overview of Orion plugins</li>
+					<li>Main tutorial exercises (Break)</li>
+					<li>Advanced Examples and Closing Thoughts</li>
+				</ul>			
+
+			</article>
+			<article>
+				<h3>
+					Helloworld Plugin Walkthrough
+				</h3>
+			</article>
+			<article>
+				<h3>What are Orion plugins</h3>
+
+				<ul>
+					<li>Orion plugins are 'separate' HTML pages hosted in non-visible IFrames</li>
+					<li>Orion pages are designed to be 'extended' with plugins</li>
+					<li>Orion applications are <b>NOT</b> made up of plugins.</li>
+					<li>Plugins are isolated and secure against direct modification of the hosting page</li>
+				</ul>
+			</article>
+			<article>
+				<p>
+					<img src="images/server-integration.png" />
+				</p>
+			</article>
+			<article>
+				<p>
+					<img src="images/orion-integration.png" />
+				</p>
+
+			</article>
+			<article>
+				<h3>Orion plugins redux</h3>
+				<ul>
+					<li>Plugins are just HTML pages that follow a communication protocol</li>
+					<li>Advertises “cacheable” capabilities/properties using window.postMessage</li>
+					<li>Allows cross-origin communication and independent implementation</li>
+					<li>Uses 'Structured Clone Algorithm' to support binary data exchange </li>
+				</ul>
+			</article>
+			
+			<article>
+              <h3>Types of Orion Plugins</h3>
+              <ul>
+                <li>
+                Application Linking (URI Templates / Hyperlinks)
+				<ul><li>Link from Navigator to Editor without hard-coding</li></ul>
+				</li>
+				<li>
+                Metadata (Name / Value pairs)
+				<ul><li>Action Labels, Cache information, Filters</li></ul>
+				</li>
+				<li>
+                Service Provider (JSON-RPC variant / binary support)
+				<ul><li>File Content, Editor Outline, Editor Actions</li></ul>
+				</li>
+              </ul>
+			</article>
+			
+			        <article>
+	        <h3>
+	          Markdown in a Nutshell
+	        </h3>
+	        <ul>
+	          <li>Markdown is intended to be as easy-to-read and easy-to-write as possible.</li>
+	          <li>A Markdown-formatted document should be publishable as-is, as plain text,
+	          and can be read without looking like it’s been marked up with tags or formatting instructions.</li>
+	          <li>Markdown uses punctuation characters, carefully chosen so as to look like what they mean.      
+	          e.g., asterisks around a word actually look like *emphasis*, markdown lists look like lists, etc.</li>
+			  <li>Markdown can be easily converted to structurally valid XHTML (or HTML).</li>
+	          <li>The single biggest source of inspiration for Markdown’s syntax is the format of plain text email.</li>
+	        </ul>
+        </article>
+      
+		<article class="smaller">
+	        <h3>
+	          Markdown Syntax Highlights
+	        </h3>
+	        	<h4>Block Elements (Paragraphs, Headers, Blockquotes, Lists, etc.)</h4>
+        		<ul>
+        			<li><code># This is an equivalent of H1</code></li>
+        			<li><code>## This is an equivalent of H2</code></li>
+        			<li><code>&gt; Blockquote</code></li>
+        			<li><code>* Unordered list item</code></li>
+        		</ul>
+	        	
+	        	<h4>Span Elements (Links, Emphasis, Code)</h4>
+        		<ul>
+        			<li><code>**text in bold**</code></li>
+        			<li><code>inline [link](http://example.com) in text</code></li>
+        			<li><code>`console.info()` for inline code</code></li>
+        		</ul>
+		</article>
+      
+		<article class="smaller">
+			<h3>
+				Sample Markdown Document
+			</h3>
+			<pre>
+
+Title
+=====
+        
+## Header 1
+This is a sample text. **Bold** text.
+
+### Header 1.1
+Sample list below:
+
+* item 1
+* item 2
+* item 3
+
+## Header 2
+Text with a [link]
+
+[link] http://sample.com "Sample link" 
+			</pre>
+			It is easy to read as-is.
+		</article>
+	      
+		<article class="smaller">
+			<h3>
+				... Converted to HTML
+	        </h3>
+			<pre>
+
+&lt;h1&gt;Title&lt;/h1&gt;
+
+&lt;h2&gt;Header 1&lt;/h1&gt;
+
+&lt;p&gt;This is a sample text. &lt;strong&gt;Bold&lt;/strong&gt; text.&lt;/p&gt;
+
+&lt;h3&gt;Header 1.1&lt;/h2&gt;
+
+&lt;p&gt;Sample list below:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;item 1&lt;/li&gt;
+&lt;li&gt;item 2&lt;/li&gt;
+&lt;li&gt;item 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Header 2&lt;/h1&gt;
+
+&lt;p&gt;Text with a &lt;a href="http://sample.com" title="Sample link"&gt;link&lt;/a&gt;&lt;/p&gt;
+			</pre>
+		</article>
+	      
+		<article = "smaller">
+			<h3>Title</h3>
+	
+			<h4>Header 1</h4>
+			
+			<p>This is a sample text. <strong>Bold</strong> text.</p>
+			
+			<h5>Header 1.1</h5>
+			
+			<p>Sample list below:</p>
+			
+			<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+			</ul>
+			
+			...
+		</article>
+			
+			<article>
+        <h3>
+          orion.file.contenttype
+        </h3>
+        <ul>
+          <li>Tells Orion about a new file type</li>
+          <li>Optionally associates information such as display name and image, filenames, and file extensions.</li>
+          <li>Does nothing interesting, but used by other services</li>
+        </ul>
+        <pre>
+provider.registerServiceProvider("orion.file.contenttype", {}, {
+  contentTypes:
+    [{ id: "text/x-web-markdown",
+       name: "Markdown",
+       extension: ["md", "markdown", "mdown","mkd", "mkdn"],
+       image: "http://szbra.github.com/example2/bin/md.gif"
+    }]
+});
+ </pre>
+      </article>
+
+      <article>
+        <h3>
+          orion.navigate.command
+        </h3>
+        <ul>
+          <li>Adds a command to the menu next to a file in the navigator page</li>
+          <li>Declares a single method: <tt>run(selection)</tt>, returning an URL string</li>
+          <li>Argument is either a file object, or array of files</li>
+        </ul>
+        <pre>
+provider.registerServiceProvider("orion.navigate.command", {
+  run : function(item) {
+    return "http://google.com/#q=" + item.Name;
+  }}, {
+    image: "http://google.com/favicon.ico",
+    name: "Google Search", id: "my.command",
+    forceSingleItem: true, href: true
+  });
+        </pre>
+      </article>
+      
+            <article>
+        <h3>
+          orion.edit.command
+        </h3>
+        <ul>
+          <li>Registers a command that operates on the contents or selection in an editor</li>
+          <li>Declares a single function: run(selectedText, text, selection)</li>
+          <li>Returns a string to replace current selection, or an object describing new editor contents and selection</li>
+        </ul>
+        <pre>
+provider.registerServiceProvider("orion.edit.command", {
+   run : function(text) {
+     return text.toUpperCase();
+   }
+ }, {
+   name : "UPPERCASE", img : "/images/gear.gif", key : [ "u", true ]
+});
+ </pre>
+      </article>
+
+      <article>
+        <h3>
+          orion.edit.highlighter
+        </h3>
+        <ul>
+          <li>Contributes syntax highlighting rules to the editor</li>
+          <li>Declarative style: provide a grammar object</li>
+          <li>Programmatic style: implement the highlighter algorithm entirely in the plugin</li>
+        </ul>
+        <pre>
+provider.registerServiceProvider("orion.edit.highlighter", {},
+    type : "grammar", contentType: ["text.markdown"],
+    grammar: {
+      patterns: [{
+          //line starting with '#' is a heading
+          "match": "^#.*$",
+          "name": "entity.name.tag.doctype.html"
+      }]
+    }
+}); </pre>
+      </article>
+
+      <article>
+        <h3>
+          orion.edit.contentAssist
+        </h3>
+        <ul>
+          <li>Contributes content assist proposals</li>
+          <li>Implements single method: computeProposals(prefix, buffer, selection)</li>
+        </ul>
+        <pre>
+computeProposals: function(prefix, buffer, selection) {
+  var proposals = [];
+  if (prefix.length === 0) {
+    proposals.push({
+      proposal: "[Link Name](http:// \"Optional Title Here\")",
+      escapePosition: selection.offset+19});
+    }
+  return proposals;
+}
+       </pre>
+      </article>
+
+      <article>
+        <h3>
+          orion.edit.outliner
+        </h3>
+        <ul>
+          <li>Contributes outline for a document</li>
+          <li>Implements single method: getOutline(contents, title) </li>
+          <li>Returns a JSON representation of the document structure</li>
+        </ul>
+        <pre>
+[{
+  "label" : "Top Level",
+  "line" : 1,
+  "children" : [
+    {"label" : "Child 1", "line" : 2},
+    {"label" : "Child 2", "line" : 3}
+  ]
+}]
+       </pre>
+      </article>
+
+      <article>
+        <h3>
+          orion.edit.validator
+        </h3>
+        <ul>
+          <li>Calculates errors and warnings in a document</li>
+          <li>Implements single method: checkSyntax(title, contents)</li>
+          <li>Returns a JSON representation of errors and warnings</li>
+        </ul>
+        <pre>
+{"problems" : [{
+  "description" : "Broken link: [foo]",
+  "line" : 1,
+  "start" : 15,
+  "end" : 20,
+  "severity" : "error"
+}]
+       </pre>
+      </article>
+			
+			<article id="orion-talks">
+              <h3>Orion at EclipseCon</h3>
+              <ul>
+                <li>Orion BoF: <b>Monday 19:00</b>, Lake Thoreau</li>
+                <li>Micro Services in JavaScript: <b>Tuesday 17:00</b>, Grand Ballroom BC</li>
+                <li>Language Tooling in Orion: <b>Wednesday 11:15</b>, Grand Ballroom BC</li>
+                <li>Developing Cloud Apps with Orion, Django and MongoDB in 30 Minutes or Less: <b>Wednesday 17:00</b>, Reston Suites B</li>
+              </ul>
+			</article>
+		</section>
+	</body>
+</html>
